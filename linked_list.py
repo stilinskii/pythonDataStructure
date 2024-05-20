@@ -36,12 +36,6 @@ class LinkedList:
 
         mem.next = Node(data,None)
 
-    def insert_values(self, data_list):
-        self.head = None
-
-        for data in data_list:
-            self.insert_at_end(data);
-
     def get_length(self):
         itr = self.head
         length = 0
@@ -50,6 +44,12 @@ class LinkedList:
             itr = itr.next
 
         return length
+
+    def insert_values(self, data_list):
+        self.head = None
+
+        for data in data_list:
+            self.insert_at_end(data);
 
     def remove_at_answer_ver(self,index):
         if self.get_length()-1 < index or 0 > index:
@@ -127,7 +127,15 @@ class LinkedList:
         print("no data [" + data_after + "]")
 
     def remove_by_value(self, data):
+        if self.head is None:
+            return
+
         itr = self.head
+        if itr.data == data:
+            self.head = itr.next
+            itr.next = None
+            return
+
         while itr.next:
             if itr.next.data == data:
                 itr.next = itr.next.next
@@ -147,5 +155,5 @@ if __name__ == '__main__':
     ll.insert_after_value("figs","ru")
     ll.print()
 
-    ll.remove_by_value("figss")
+    ll.remove_by_value("ba")
     ll.print()
