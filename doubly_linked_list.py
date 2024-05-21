@@ -18,7 +18,7 @@ class Doubly_linked_list:
 
     def get_item_by_index(self,index):
         if index >= self.get_length() or index < 0:
-            raise Exception("out if index, index:" + str(self.get_length()))
+            raise Exception("index out of range, index:" + str(self.get_length()))
 
         if index == 0:
             return self.head
@@ -112,7 +112,7 @@ class Doubly_linked_list:
 
     def remove_at(self,index):
         if index < 0 or index >= self.get_length():
-            raise Exception("out of index")
+            raise Exception("index out of range")
 
         itr = self.head
         if index == 0:
@@ -132,7 +132,7 @@ class Doubly_linked_list:
     # todo need to review
     def insert_at(self,index,data):
         if index < 0 and index >= self.get_length():
-            raise Exception("out of index")
+            raise Exception("index out of range")
 
         if index == 0:
             self.insert_at_begining(data)
@@ -178,7 +178,15 @@ class Doubly_linked_list:
                 break
             itr = itr.next
 
-    # def get_last_node(self):
+    def get_last_node(self):
+        if self.head == None:
+            raise Exception("list is empty")
+
+        itr = self.head
+        while itr.next:
+            itr = itr.next
+
+        return itr
 
 if __name__ == '__main__':
     dl = Doubly_linked_list()
@@ -201,3 +209,4 @@ if __name__ == '__main__':
     dl.print()
     dl.insert_after_value("good","girl")
     dl.print()
+    print(dl.get_last_node().data)
